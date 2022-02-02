@@ -1,0 +1,22 @@
+{
+  "fields": {
+    "Columns": {
+      "items": {
+        "fields": {
+          "Title": {
+            "dependencies": {},
+            "type": "text"
+          },
+          "Image": {
+            "dependencies": {},
+            "type": "image"
+          },
+          "Description": {
+            "dependencies": {},
+            "type": "textarea"
+          }
+        }
+      }
+    }
+  }
+}
