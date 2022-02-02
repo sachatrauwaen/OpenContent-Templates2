@@ -1,0 +1,50 @@
+<template id="vue-list-template" >
+<div>
+
+    <template v-if="Items.length" >
+    
+    <div v-for="item in Items" class="list-item col-md-12">
+        
+        <div v-if="item.Context.IsEditable" style="outline: 1px dashed #ccc;height: 22px !important;position:relative;margin-top:1px;">
+            <div style="padding-left:5px; line-height:22px;">
+                {{item.publishstatus}} : {{item.publishstartdate}} - {{item.publishenddate}}
+            </div>
+            <div style="position:absolute;right:0;top:0;line-height:22px; ">
+            	<a :href="item.Context.EditUrl" title="Edit Item" style="background-color:#000;color:#fff;padding: 0 2px; "><i class="fa fa-pencil"></i></a>
+            </div>
+        </div>
+        
+        
+        <div class="row article">
+            <div class="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a :href="item.Context.DetailUrl"><img :src="item.Image" alt="" title="" class="img-thumbnail img-responsive" /></a>
+                    </div>
+                    <div class="caption col-md-8">
+                        <h3 class="title"><a :href="item.Context.DetailUrl">{{item.Title}}</a></h3>
+                        <div class="desc" v-html="item.Summary"></div>
+                        <p><a :href="item.Context.DetailUrl" class="btn btn-default" role="button">Read more</a></p>
+                        <p class="theme">
+                            <span class="fa fa-calendar" aria-hidden="true"></span>
+                            {{item.publishstartdate}}
+                            <span class="fa fa-tags" aria-hidden="true"></span>
+                            
+                            <a v-if="item.Category" class="categorylink" :data-id="item.Category.Id" href="#" ><span>{{item.Category.Title}}</span></a>
+                            
+                        </p>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    
+    </template>
+	<template v-else>
+        <div class="col-md-12">
+            <p>No results found</p>
+        </div>
+  </template>
+  </div>
+</template>

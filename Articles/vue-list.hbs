@@ -1,0 +1,126 @@
+{{registerscript "https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"}}
+
+{{registerstylesheet "/DesktopModules/OpenContent/css/font-awesome/css/font-awesome.css"}}
+{{registerscript "/DesktopModules/OpenContent/js/lib/moment/min/moment.min.js"}}
+{{AdditionalData.intro.Title}}
+
+<script>
+var opencontent=opencontent||{};
+opencontent[{{Context.ModuleId}}]=  {{convertToJson this}};
+</script>
+
+
+    <div id="vuelist" class="vuelist" data-moduleid="{{Context.ModuleId}}">
+	
+	{{{{raw}}}}
+{{{{/raw}}}}		
+	<div class="row">
+            <div class="col-md-3 side-bar">
+                <div >
+                    <!-- filter by title -->
+                    <div class="text-filter-box form-group">
+                        <div class="input-group">
+                             <div class="input-group-prepend">
+								<div class="input-group-text"><i class="fa fa-search"></i></span></div>
+							</div>
+                                <input class="form-control"
+                                    type="text"
+                                    value=""
+                                    placeholder="Filter by Title"
+                                    v-model="search" @input="changeSearch"/>
+                        </div>
+                    </div>
+                    <!-- checkbox filters -->
+                    <div class="form-group" >
+						<label >Categories</label>
+                        {{#each AdditionalData.Categories}}
+                        <div class="checkbox ">
+                            <label for="{{Id}}">
+                                <input id="{{Id}}" type="checkbox" v-model="categories" value="{{Id}}" @change="searchItems" />
+                                {{Title}}
+                            </label>
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{#if Settings.Tags}}
+                    <!-- Button Text Filters Group Control -->
+                    <div class="form-group" >
+					 <label >Tags</label>
+						{{#each AdditionalData.Tags}}
+						<div class="checkbox ">
+                            <label for="{{Id}}">
+                                <input id="{{Id}}" type="checkbox" v-model="tags" value="{{Id}}" @change="searchItems" />
+                                {{Tag}}
+                            </label>
+                        </div>
+						{{/each}}
+                    </div>
+                    {{/if}}
+                    {{#if Settings.Sort}}
+                    <!-- sort dropdown -->
+                    <div class="form-group" >
+						  <label for="exampleFormControlSelect1">Sort by</label>
+						<select class="form-control" id="exampleFormControlSelect1" v-model="sort" @change="searchItems">
+						  <option value="Title">Title</option>
+						  <option value="publishstartdate">Date</option>
+						</select>
+                    </div>
+                    {{/if}}
+                </div>
+                {{#if Settings.Rss}}
+                <div class="row">
+                    <div class="col-md-9">
+                        <i class="fa fa-rss"></i>
+                        <a href="{{Context.RssUrl}}">Rss</a>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="col-md-9">
+                <!-- data -->
+                <div class="list row text-shadow">
+                    <vue-list-item :Items="Items"></vue-list-item>
+                </div>
+            </div>
+        </div>
+		<div class="row" style="margin-top:20px">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+   						{{#if Settings.ItemsPage}}						
+						<div class="form-group">
+							<select class="form-control" style="width:auto;" v-model="pageSize" @click.prevent="changePageSize(pageSize)" >
+							  <option value="1">1 per page</option>
+							  <option value="5">5 per page</option>
+							  <option value="10">10 per page</option>
+							  <option value="20">20</option>
+							  <option value="1OO">100</option>
+							</select>
+						  </div>
+                        {{/if}}
+                    </div>
+                    <div class="col-md-8">
+                        <!-- bootstrap pagination control -->
+						 <ul class="pagination">
+							<li class="page-item">
+							  <a :class="{disabled: pageIndex==0}" class="page-link" href="#" aria-label="Previous" @click.prevent="changePageIndex(pageIndex-1)">
+								<span aria-hidden="true">&laquo;</span>
+							  </a>
+							</li>
+							<li v-for="page in pages" class="page-item"><a class="page-link" href="#" @click.prevent="changePageIndex(page)" >\{{page+1}}</a></li>
+							<li class="page-item">
+							  <a :class="{disabled: pageIndex== pages.length-1}" class="page-link" href="#" aria-label="Next" @click.prevent="changePageIndex(pageIndex+1)">
+								<span aria-hidden="true">&raquo;</span>
+							  </a>
+							</li>
+						  </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                {{#if Settings.CurrentPage}}
+				Total : \{{total}} - Page \{{pageIndex+1}} of \{{pages.length}}
+				{{/if}}
+            </div>
+        </div>
+	</div>

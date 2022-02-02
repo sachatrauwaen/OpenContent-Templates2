@@ -1,0 +1,86 @@
+{
+  "fields": {
+    "Category": {
+      "dependencies": {},
+      "type": "relation",
+      "dataService": {
+        "action": "LookupData",
+        "data": {
+          "dataKey": "Categories",
+          "valueField": "Id",
+          "textField": "Title"
+        }
+      }
+    },
+    "Title": {
+      "dependencies": {},
+      "type": "text"
+    },
+    "Summary": {
+      "dependencies": {},
+      "type": "ckeditor"
+    },
+    "Description": {
+      "dependencies": {},
+      "type": "ckeditor"
+    },
+    "Image": {
+      "dependencies": {},
+      "type": "image"
+    },
+    "Gallery": {
+      "type": "gallery"
+    },
+    "Documents": {
+      "type": "documents"
+    },
+    "Seo": {
+      "fields": {
+        "Slug": {
+          "dependencies": {},
+          "type": "text"
+        },
+        "MetaTitle": {
+          "dependencies": {},
+          "type": "text"
+        },
+        "MetaDescription": {
+          "dependencies": {},
+          "type": "text"
+        }
+      }
+    },
+    "Tags": {
+      "dependencies": {},
+      "type": "relation",
+      "dataService": {
+        "action": "LookupData",
+        "data": {
+          "dataKey": "Tags",
+          "valueField": "Id",
+          "textField": "Tag"
+        }
+      }
+    },
+    "Featured": {
+      "dependencies": {}
+    },
+    "publishstartdate": {
+      "dependencies": {},
+      "type": "date",
+      "placeholder": ""
+    },
+    "publishenddate": {
+      "dependencies": {},
+      "type": "date"
+    },
+    "publishstatus": {
+      "dependencies": {},
+      "type": "select",
+      "optionLabels": [
+        "draft",
+        "published"
+      ]
+    }
+  }
+}
