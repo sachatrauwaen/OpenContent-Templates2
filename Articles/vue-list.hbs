@@ -20,13 +20,13 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fa fa-search"></i></div>
-            </div>  
+            </div>
+            <input class="form-control"
+                   type="text"
+                   value=""
+                   placeholder="Filter by Title"
+                   v-model="search" @input="changeSearch"/>
           </div>
-          <input class="form-control"
-                 type="text"
-                 value=""
-                 placeholder="Filter by Title"
-                 v-model="search" @input="changeSearch"/>
         </div>
         <!-- checkbox filters -->
         <div class="form-group" >
