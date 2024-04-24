@@ -17,8 +17,7 @@
             var centerLatlng = new google.maps.LatLng($(this).data("lat"), $(this).data("lng"));
             var zoom = $(this).data("zoom");
             var mapicon = $(this).data("icon");            
-            var glyphImg = document.createElement('img');
-            glyphImg.src = mapicon;
+           
             var mapOptions = {
                 zoom: zoom,
                 center: centerLatlng,
@@ -33,6 +32,8 @@
                 var myLatlng = new google.maps.LatLng($(this).data("lat"), $(this).data("lng"));
                 var marker;
                 if (mapicon) {
+                    var glyphImg = document.createElement('img');
+                    glyphImg.src = mapicon;
                     var pinGlyph = new google.maps.marker.PinElement({
                         glyph: glyphImg
                     });
