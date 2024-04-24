@@ -1,0 +1,26 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "dependencies": {},
+      "type": "text"
+    },
+    "Elements": {
+      "items": {
+        "fields": {
+          "Title": {
+            "dependencies": {},
+            "type": "text"
+          },
+          "Description": {
+            "dependencies": {},
+            "type": "textarea"
+          },
+          "Address": {
+            "fields": {},
+            "type": "address"
+          }
+        }
+      }
+    }
+  }
+}

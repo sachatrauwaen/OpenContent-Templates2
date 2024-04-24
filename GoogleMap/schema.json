@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "title": "Module Title",
+      "type": "string"
+    },
+    "Elements": {
+      "title": "Locaties",
+      "type": "array",
+      "items": {
+        "title": "",
+        "type": "object",
+        "properties": {
+          "Title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "Description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "Address": {
+            "title": "Address",
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    }
+  }
+}
